@@ -7,7 +7,7 @@ let infuraProjectID = fs.readFileSync(".infura").toString().trim();
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   networks: {
-    goelri: {
+    goerli: {
       url: "https://goerli.infura.io/v3/" + infuraProjectID,
       accounts: {
         mnemonic,
@@ -16,6 +16,9 @@ module.exports = {
         count: 20,
       },
     },
+  },
+  etherscan: {
+    apiKey: fs.readFileSync(".etherscan").toString().trim(),
   },
   solidity: "0.8.17",
 };
