@@ -1,12 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-
-import "@ganache/console.log/console.sol";
-
+import "openzeppelin-contracts/token/ERC721/ERC721.sol";
+import "openzeppelin-contracts/access/Ownable.sol";
+import "openzeppelin-contracts/utils/Counters.sol";
 
 contract Spacebear is ERC721, Ownable {
     using Counters for Counters.Counter;
@@ -27,8 +24,7 @@ contract Spacebear is ERC721, Ownable {
 
     function buyToken() public payable {
         uint256 tokenId = _tokenIdCounter.current();
-        console.log("got here", tokenId, msg.value);
-        require(msg.value == (tokenId + 1) * 0.1 ether, "Not enough funds sent");
+        require(msg.value == tokenId * 0.1 ether, "Not enough funds sent");
 
         _tokenIdCounter.increment();
         _safeMint(msg.sender, tokenId);
